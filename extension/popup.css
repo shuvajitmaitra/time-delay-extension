@@ -1,0 +1,372 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:             #0d0d14;
+  --surface:        #16161f;
+  --surface-hover:  #1e1e2c;
+  --border:         #252538;
+  --accent:         #7c6aff;
+  --accent-hover:   #9181ff;
+  --text:           #e2e2f0;
+  --text-muted:     #787898;
+  --danger:         #ff4f4f;
+  --success:        #44d97e;
+  --radius:         8px;
+  --radius-sm:      5px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  width: 380px;
+  min-height: 200px;
+  max-height: 580px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo { font-size: 17px; }
+
+h1 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+h2 {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+/* ── Toggle switch ─────────────────────────────────────────────────────────── */
+.toggle {
+  position: relative;
+  display: inline-flex;
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 22px;
+  transition: background 0.2s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.toggle input:checked + .slider { background: var(--accent); }
+.toggle input:checked + .slider::before { transform: translateX(18px); }
+
+/* ── Focus mode row ────────────────────────────────────────────────────────── */
+.focus-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(124, 106, 255, 0.06);
+}
+
+.focus-label { display: flex; flex-direction: column; gap: 1px; }
+.focus-title { font-size: 13px; font-weight: 500; }
+.focus-desc  { font-size: 11px; color: var(--text-muted); }
+
+/* ── Add rule section ──────────────────────────────────────────────────────── */
+.add-rule {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Inputs ────────────────────────────────────────────────────────────────── */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(124, 106, 255, 0.18);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: var(--text-muted);
+}
+
+input.error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 2px rgba(255, 79, 79, 0.18);
+}
+
+/* ── Delay row ─────────────────────────────────────────────────────────────── */
+.delay-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.presets { display: flex; gap: 4px; }
+
+.preset {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: var(--font);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.preset:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.preset.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+
+.custom-delay {
+  width: 68px !important;
+  padding: 5px 8px !important;
+  text-align: center;
+}
+
+.hidden { display: none !important; }
+
+/* ── Form actions ──────────────────────────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-primary {
+  flex: 1;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover  { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+/* ── Rules section ─────────────────────────────────────────────────────────── */
+.rules-section {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rules-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 7px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 20px 0 8px;
+  line-height: 1.8;
+}
+
+/* ── Rule item ─────────────────────────────────────────────────────────────── */
+.rule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  gap: 8px;
+  transition: border-color 0.15s;
+  animation: slide-in 0.15s ease;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rule-item:hover { border-color: rgba(124, 106, 255, 0.5); }
+
+.rule-item.disabled { opacity: 0.4; }
+
+.rule-item.editing { border-color: var(--accent); }
+
+.rule-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.rule-url {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rule-delay {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.rule-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Icon buttons ──────────────────────────────────────────────────────────── */
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-icon:hover    { background: var(--surface-hover); color: var(--text); }
+.edit-btn:hover    { color: var(--accent); }
+.delete-btn:hover  { color: var(--danger); }
+
+/* ── Shake animation ───────────────────────────────────────────────────────── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+
+.shake { animation: shake 0.4s ease; }

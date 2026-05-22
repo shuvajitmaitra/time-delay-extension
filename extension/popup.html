@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Delay</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <span class="logo">⏱</span>
+        <h1>Time Delay</h1>
+      </div>
+      <label class="toggle" title="Master on/off switch">
+        <input type="checkbox" id="globalToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </header>
+
+    <!-- Focus Mode Banner -->
+    <div class="focus-mode-row">
+      <div class="focus-label">
+        <span class="focus-title">Focus Mode</span>
+        <span class="focus-desc">Adds a 15s delay to all sites</span>
+      </div>
+      <label class="toggle" title="Delay all browsing">
+        <input type="checkbox" id="focusModeToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Add / Edit Rule -->
+    <section class="add-rule">
+      <h2>Add Website</h2>
+      <div class="input-group">
+        <input
+          type="text"
+          id="urlInput"
+          placeholder="e.g. youtube.com, *.reddit.com"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+      <div class="delay-row">
+        <span class="label">Delay</span>
+        <div class="presets">
+          <button class="preset active" data-seconds="10">10s</button>
+          <button class="preset" data-seconds="30">30s</button>
+          <button class="preset" data-seconds="60">60s</button>
+          <button class="preset" data-seconds="custom">Custom</button>
+        </div>
+        <input
+          type="number"
+          id="customDelay"
+          min="1"
+          max="3600"
+          placeholder="sec"
+          class="custom-delay hidden"
+        />
+      </div>
+      <div class="form-actions">
+        <button id="cancelBtn" class="btn-secondary hidden">Cancel</button>
+        <button id="addBtn" class="btn-primary">Add Rule</button>
+      </div>
+    </section>
+
+    <!-- Blocked Sites List -->
+    <section class="rules-section">
+      <div class="rules-header">
+        <h2>Blocked Sites</h2>
+        <span id="ruleCount" class="badge">0</span>
+      </div>
+      <div id="rulesList" class="rules-list"></div>
+    </section>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

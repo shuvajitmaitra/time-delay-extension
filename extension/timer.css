@@ -1,0 +1,143 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --accent:      #7c6aff;
+  --accent-dim:  rgba(124, 106, 255, 0.25);
+  --accent-glow: rgba(124, 106, 255, 0.4);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Overlay ───────────────────────────────────────────────────────────────── */
+#overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#overlay.fade-out { opacity: 0; }
+
+/* ── Ring ──────────────────────────────────────────────────────────────────── */
+.ring-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.progress-ring {
+  width: 220px;
+  height: 220px;
+  /* Rotate so the arc starts at the top (12 o'clock) */
+  transform: rotate(-90deg);
+  display: block;
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #111128;
+  stroke-width: 8;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 8;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+  /* Transition is set dynamically in JS after initial paint */
+}
+
+/* ── Countdown number ──────────────────────────────────────────────────────── */
+.countdown-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#countdown {
+  font-size: 78px;
+  font-weight: 700;
+  letter-spacing: -5px;
+  line-height: 1;
+  color: #fff;
+}
+
+@keyframes pulse-scale {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+#countdown.pulse {
+  animation: pulse-scale 0.35s ease;
+}
+
+/* ── Info block ────────────────────────────────────────────────────────────── */
+.info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tagline {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.site-name {
+  font-size: 19px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 480px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Linear progress bar ───────────────────────────────────────────────────── */
+.progress-bar-wrap {
+  width: 200px;
+  height: 3px;
+  background: #111128;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent-glow);
+  /* Transition is set dynamically in JS */
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Taking a pause…</title>
+  <link rel="stylesheet" href="timer.css" />
+</head>
+<body>
+  <div id="overlay">
+
+    <!-- Circular countdown ring -->
+    <div class="ring-container">
+      <svg class="progress-ring" viewBox="0 0 220 220" aria-hidden="true">
+        <circle class="ring-bg"   cx="110" cy="110" r="96" />
+        <circle class="ring-fill" cx="110" cy="110" r="96" id="progressRing" />
+      </svg>
+      <div class="countdown-wrap">
+        <span id="countdown" aria-live="polite">--</span>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="info">
+      <p class="tagline">Taking a mindful pause</p>
+      <p id="siteName" class="site-name"></p>
+    </div>
+
+    <!-- Linear progress bar -->
+    <div class="progress-bar-wrap" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+  </div>
+  <script src="timer.js"></script>
+</body>
+</html>

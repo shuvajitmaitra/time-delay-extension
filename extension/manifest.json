@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Time Delay",
+  "version": "1.0.0",
+  "description": "Add countdown timers to distracting websites for mindful browsing.",
+  "permissions": [
+    "webNavigation",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Time Delay"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["timer.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
